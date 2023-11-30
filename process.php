@@ -3,6 +3,7 @@ include 'conn.php';
 
 // add data
 if (isset($_POST['add'])) {
+    $userID = $_POST['userID'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $address = $_POST['address'];
@@ -10,8 +11,8 @@ if (isset($_POST['add'])) {
 
     // INSERT INTO table_name (column1, column2, column3, ...)VALUES (value1, value2, value3, ...);
 
-    $insertData = $conn->prepare("INSERT INTO personal_info(fname, lname, address, age) VALUES(?, ?, ?, ?)");
-    $insertData->execute([$fname, $lname, $address, $age]);
+    $insertData = $conn->prepare("INSERT INTO personal_info(user_id, fname, lname, address, age) VALUES(?, ?, ?, ?, ?)");
+    $insertData->execute([$userID, $fname, $lname, $address, $age]);
 
     $msg = "Data Inserted";
     header("Location: index.php?msg=$msg");

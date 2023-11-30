@@ -1,5 +1,9 @@
-<?php include 'header.php'; ?>
-
+<?php include 'header.php'; 
+if(isset($_SESSION['logged_in'])){
+    header("location: index.php");
+    ob_end_flush();
+}
+?>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6 shadow p-4  mt-4">

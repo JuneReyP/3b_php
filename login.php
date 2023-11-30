@@ -2,6 +2,7 @@
 include 'header.php'; 
 if(isset($_SESSION['logged_in'])){
     header("location: index.php");
+    ob_end_flush();
 }
 
 if(isset($_POST['login'])){

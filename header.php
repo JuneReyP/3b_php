@@ -1,6 +1,7 @@
 <?php
-include 'conn.php';
+ob_start();
 session_start();
+include 'conn.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

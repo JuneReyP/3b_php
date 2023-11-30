@@ -2,6 +2,7 @@
     include 'header.php';
     if(!isset($_SESSION['logged_in'])){
         header("location: login.php");
+        ob_end_flush();
     }
  ?>
         <!-- row for input -->
@@ -58,6 +59,7 @@
                     <?php   } ?>
 
                     <form action="process.php" method="POST" class="form shadow p-3">
+                        <input type="hidden" name="userID" value="<?= $_SESSION['u_id'] ?>">
                         <div class="mb-2">
                             <label for="fname">Firstname: </label>
                             <input type="text" class="form-control" id="fname" name="fname">
@@ -99,8 +101,10 @@
                         </thead>
                         <tbody>
                             <?php
+                            $userID = $_SESSION['u_id'];
                             $cnt = 1;
-                            $select = $conn->query("SELECT * FROM personal_info");
+                            $select = $conn->prepare("SELECT * FROM personal_info WHERE user_id = ?");
+                            $select->execute([$userID]);
                             foreach ($select as $data) { ?>
                                 <tr>
                                     <td><?= $cnt++ ?></td>
